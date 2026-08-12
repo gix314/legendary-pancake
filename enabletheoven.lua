@@ -1,13 +1,25 @@
-repeat task.wait() until game:IsLoaded()
+local h = game:GetService("HttpService")
+local p = game.PlaceId
+local g = game.GameId
 
-local pid = game.PlaceId
+local o = {77747658251236}
+local n = {71132543521245, 104761395312874, 111097829542198, 84988808589910}
 
-local old = {77747658251236, 130167267952199, 99684056491472, 75159314259063, 123955125827131, 96767841099256, 138368689293913, 98826438856089, 75982168454032, 87419807194206}
-local new = {71132543521245, 91255392593879, 104761395312874, 121357213553162, 111097829542198, 105440532661931, 84988808589910, 96105075537655}
+local function gR()
+    if table.find(o, p) or table.find(n, p) then return p end
+    if g <= 0 then return p end
+    local s, r = pcall(function()
+        local d = h:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games?universeIds=" .. g))
+        return d and d.data and d.data[1] and d.data[1].rootPlaceId
+    end)
+    return (s and r) and r or p
+end
 
-if table.find(old, pid) then
+local r = gR()
+
+if table.find(o, r) then
     loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/52d7bb3829a25a2f9b476d1eb84c8d1d4271fda532b61574b926dd7cd2e9d3e9/download"))()
-elseif table.find(new, pid) then
+elseif table.find(n, r) then
     loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/5a01e5dde490d4a90168d2a002927d987a0ba01b026a3a294b1fc55a43659c99/download"))()
 else
     print("current game is not supported")
