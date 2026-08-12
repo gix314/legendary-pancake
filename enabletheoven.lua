@@ -3,7 +3,7 @@ local p = game.PlaceId
 local g = game.GameId
 
 local o = {77747658251236}
-local n = {71132543521245, 104761395312874, 111097829542198, 84988808589910}
+local n = {71132543521245, 104761395312874, 111097829542198, 84988808589910, 70863683083739}
 
 local function gR()
     if table.find(o, p) or table.find(n, p) then return p end
